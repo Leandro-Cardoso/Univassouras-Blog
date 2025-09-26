@@ -1,6 +1,6 @@
 # Trabalho de Back End (Univassouras)
 
-Trabalho realizado para a matéria de Back End da Univassouras, usando Java e Django.
+Trabalho realizado para a matéria de Back End da Univassouras, usando Python e Django.
 O tema escolhido pelo grupo foi criar um **BLOG**.
 
 <br>
