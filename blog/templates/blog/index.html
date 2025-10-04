@@ -1,19 +1,22 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog</title>
+
+    <link rel="stylesheet" href="{% static 'blog/app.css' %}">
 </head>
 <body>
     
     <h1>Blog</h1>
 
-    <ul>
+    <ul class="posts-container">
 
         {% for post in blog %}
 
-        <li>
+        <li class="post-card">
             <h2>{{ post.title }}</h2>
             <p>{{ post.content }}</p>
             <p>
@@ -43,7 +46,9 @@
         
     </ul>
 
-    <a href="{% url 'create_post' %}">Novo Post</a>
+    <nav class="actions">
+        <a href="{% url 'create_post' %}" class="btn">Novo Post</a>
+    </nav>
 
 </body>
 </html>

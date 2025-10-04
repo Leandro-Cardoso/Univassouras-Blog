@@ -1,25 +1,29 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog</title>
+
+    <link rel="stylesheet" href="{% static 'blog/app.css' %}">
 </head>
 <body>
     
     <h1>Nova Postagem</h1>
 
-    <form method="POST">
+    <form method="POST" class="post-card">
 
         {% csrf_token %}
 
         {{ form }}
 
-        <button type="submit">Postar</button>
+        <nav class="actions">
+            <a href="{% url 'index' %}" class="btn">Voltar</a>
+            <button type="submit" class="btn">Postar</button>
+        </nav>
     
     </form>
-
-    <a href="{% url 'index' %}">Voltar</a>
 
 </body>
 </html>
