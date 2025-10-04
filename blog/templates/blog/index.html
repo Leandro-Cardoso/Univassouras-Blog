@@ -17,8 +17,20 @@
             <h2>{{ post.title }}</h2>
             <p>{{ post.content }}</p>
             <p>
+                {% if post.author %}
+
                 Publicado por <strong>{{ post.author }}</strong> em {{ post.created_at }}.<br>
+
+                {% else %}
+
+                Publicado em {{ post.created_at }}.<br>
+
+                {% endif %}
+                {% if post.category %}
+
                 Categoria: {{ post.category }}
+
+                {% endif %}
             </p>
             <p><a href="#"></a></p>
         </li>
