@@ -10,7 +10,7 @@
 </head>
 <body>
     
-    <h1>Nova Postagem</h1>
+    <h1>Nova Categoria</h1>
 
     <form method="POST" class="post-card">
 
@@ -19,9 +19,8 @@
         {{ form }}
 
         <nav class="actions">
-            <a href="{% url 'index' %}" class="btn">Voltar</a>
-            <a href="{% url 'create_category' %}" class="btn">Criar Categoria</a>
-            <button type="submit" class="btn">Postar</button>
+            <a href="{% url 'create_post' %}" class="btn">Voltar</a>
+            <button type="submit" class="btn">Criar</button>
         </nav>
     
     </form>

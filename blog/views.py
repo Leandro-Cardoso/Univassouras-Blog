@@ -4,7 +4,7 @@ from django.shortcuts import render
 
 from django.views.generic import ListView, CreateView
 from django.urls import reverse_lazy
-from .models import Post
+from .models import Post, Category
 
 class PostListView(ListView):
     model = Post
@@ -19,3 +19,10 @@ class PostCreateView(CreateView):
         "content"
     ]
     success_url = reverse_lazy("index")
+
+class CategoryCreateView(CreateView):
+    model = Category
+    fields = [
+        "name"
+    ]
+    success_url = reverse_lazy("create_post")
