@@ -17,6 +17,7 @@
         {% for post in blog %}
 
         <li class="post-card">
+
             <h2>{{ post.title }}</h2>
             <p>{{ post.content }}</p>
             <p>
@@ -35,50 +36,41 @@
 
                 {% endif %}
             </p>
-            <p><a href="#"></a></p>
+            <nav class="actions">
+                <a href="#" class="btn toggle-comments" data-target="#comments-{{ post.pk }}">Comentários</a>
+            </nav>
 
-            <ul>
-
+            <ul id="comments-{{ post.pk }}" class="hide">
                 {% for comment in post.comments.all %}
-
                 <li class="comment-card">
                     <h3>{{ comment.author }}:</h3>
                     <p>{{ comment.content }}</p>
-                    <p>(publicado em {{ comment.created_at }})</p>
+                    <p>({{ comment.created_at }})</p>
                 </li>
-
                 {% empty %}
-
                 <li>Nenhum Comentário</li>
-
                 {% endfor %}
-
                 <form method="POST" action="{% url 'create_comment' post.pk %}">
-                    
                     {% csrf_token %}
-                    
                     {{ comment_form.as_div }}
-                    
                     <nav class="actions">
                         <button type="submit" class="btn">Comentar</button>
                     </nav>
                 </form>
-
             </ul>
 
         </li>
 
         {% empty %}
-
         <li>Nenhuma postagem registrada</li>
-
         {% endfor %}
-        
     </ul>
 
     <nav class="actions">
         <a href="{% url 'create_post' %}" class="btn">Novo Post</a>
     </nav>
+
+    <script src="{% static 'blog/app.js' %}"></script>
 
 </body>
 </html>
