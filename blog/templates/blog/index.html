@@ -41,10 +41,10 @@
 
                 {% for comment in post.comments.all %}
 
-                <li>
-                    <h3>{{ comment.author }}</h3>
+                <li class="comment-card">
+                    <h3>{{ comment.author }}:</h3>
                     <p>{{ comment.content }}</p>
-                    <p>Publicado em {{ comment.created_at }}</p>
+                    <p>(publicado em {{ comment.created_at }})</p>
                 </li>
 
                 {% empty %}
@@ -52,6 +52,17 @@
                 <li>Nenhum Comentário</li>
 
                 {% endfor %}
+
+                <form method="POST" action="{% url 'create_comment' post.pk %}">
+                    
+                    {% csrf_token %}
+                    
+                    {{ comment_form.as_div }}
+                    
+                    <nav class="actions">
+                        <button type="submit" class="btn">Comentar</button>
+                    </nav>
+                </form>
 
             </ul>
 

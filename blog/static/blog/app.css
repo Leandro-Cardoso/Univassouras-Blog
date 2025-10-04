@@ -3,6 +3,7 @@
     --color-primary: #177226;
     --color-background-primary: #121212;
     --color-background-secundary: #2b412f;
+    --color-background-tertiary: #354237;
     --color-text: #fff;
     --color-link: #177226;
     --color-link-hover: var(--color-link);
@@ -51,6 +52,9 @@ h1, h2, h3 {
     font-weight: var(--font-weight-bold);
     display: inline-block;
     margin: var(--spacing) 0;
+}
+
+h1, h2 {
     text-align: center;
 }
 
@@ -77,7 +81,39 @@ p {
 
 ul {
     margin: 0;
-    padding: 0 0 0 2rem;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing);
+}
+
+li {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing);
+    padding: var(--spacing);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing);
+    padding: var(--spacing);
+}
+
+label {
+    font-weight: var(--font-weight-bold);
+    width: 20%;
+}
+
+select,
+textarea,
+input {
+    width: 80%;
+    padding: var(--spacing);
+    border-radius: var(--border-radius);
+    box-sizing: border-box;
 }
 
 .btn {
@@ -105,41 +141,30 @@ a.btn {
     transition: all 0.4s ease-in-out;
 }
 
-/* Posts */
-.posts-container,
-.post-card {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing);
-    padding: var(--spacing);
+/* Cards */
+.post-card,
+.comment-card {
+    border-radius: var(--border-radius);
 }
 
 .post-card {
     background-color: var(--color-background-secundary);
-    border-radius: var(--border-radius);
 }
 
-.post-card div:not(:last-child) {
+.comment-card {
+    background-color: var(--color-background-tertiary);
+    flex-direction: row;
+    align-items: center;
+}
+
+.post-card div:not(:last-child),
+.comment-card div:not(:last-child) {
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     margin: auto;
-}
-
-.post-card label {
-    font-weight: var(--font-weight-bold);
-    width: 20%;
-}
-
-.post-card select,
-.post-card textarea,
-.post-card input {
-    width: 80%;
-    padding: var(--spacing);
-    border-radius: var(--border-radius);
-    box-sizing: border-box;
 }
 
 .actions {
