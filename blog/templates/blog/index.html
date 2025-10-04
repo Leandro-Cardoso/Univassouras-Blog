@@ -36,6 +36,25 @@
                 {% endif %}
             </p>
             <p><a href="#"></a></p>
+
+            <ul>
+
+                {% for comment in post.comments.all %}
+
+                <li>
+                    <h3>{{ comment.author }}</h3>
+                    <p>{{ comment.content }}</p>
+                    <p>Publicado em {{ comment.created_at }}</p>
+                </li>
+
+                {% empty %}
+
+                <li>Nenhum Comentário</li>
+
+                {% endfor %}
+
+            </ul>
+
         </li>
 
         {% empty %}
