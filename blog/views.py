@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.views.decorators.http import require_POST
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin 
@@ -56,6 +56,14 @@ class PostUpdateView(RoleRequiredMixin, UpdateView):
     template_name = 'blog/post_update.html'
     context_object_name = 'post'
     success_url = reverse_lazy('index')
+
+class PostDeleteView(RoleRequiredMixin, DeleteView):
+    model = Post
+    required_role = "admin"
+    context_object_name = 'post'
+    success_url = reverse_lazy('index')
+    def get(self, request, *args, **kwargs):
+        return redirect(self.success_url)
 
 class CategoryCreateView(CreateView):
     model = Category
