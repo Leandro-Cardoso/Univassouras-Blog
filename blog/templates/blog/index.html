@@ -46,8 +46,12 @@
 
                 {% endif %}
             </p>
+
             <nav class="actions">
                 <a href="#" class="btn toggle-comments" data-target="#comments-{{ post.pk }}">Comentários</a>
+                {% if user.is_authenticated and user.role.name|lower == "admin" %}
+                <a href="{% url 'post_update' pk=post.pk %}" class="btn">Editar</a>
+                {% endif %}
             </nav>
 
             <ul id="comments-{{ post.pk }}" class="hide">

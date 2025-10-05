@@ -10,19 +10,20 @@
 </head>
 <body>
     
-    <h1>Login</h1>
+    <h1>Editar Postagem</h1>
 
-    {% if form.errors %}
-        <p style="color: red;">Seu nome de usuário e senha não correspondem. Por favor, tente novamente.</p>
-    {% endif %}
+    <form method="POST" class="post-card">
 
-    <form method="post" class="post-card">
         {% csrf_token %}
-        {{ form.as_div }}
+
+        {{ form }}
+
         <nav class="actions">
-            <button type="submit" class="btn">Login</button>
-            <input type="hidden" name="next" value="{{ next }}">
+            <a href="{% url 'index' %}" class="btn">Voltar</a>
+            <a href="{% url 'create_category' %}" class="btn">Criar Categoria</a>
+            <button type="submit" class="btn">Editar</button>
         </nav>
+    
     </form>
 
 </body>
