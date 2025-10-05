@@ -37,7 +37,7 @@ class PostCreateView(CreateView):
     required_role = "admin"
     fields = [
         "title",
-        "category",
+        "categories",
         "content"
     ]
     success_url = reverse_lazy("index")
@@ -50,7 +50,7 @@ class PostUpdateView(RoleRequiredMixin, UpdateView):
     required_role = "admin"
     fields = [
         "title",
-        "category",
+        "categories",
         "content"
     ] 
     template_name = 'blog/post_update.html'

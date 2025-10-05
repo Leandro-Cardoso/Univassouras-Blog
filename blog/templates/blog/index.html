@@ -40,9 +40,10 @@
                 Publicado em {{ post.created_at }}.<br>
 
                 {% endif %}
-                {% if post.category %}
+                {% if post.categories.all %}
 
-                Categoria: {{ post.category }}
+                Categoria: 
+                {% for category in post.categories.all %}{% if not forloop.first and not forloop.last %}, {% endif %}{% if forloop.last and not forloop.first %} e {% endif %}{{ category.name }}{% endfor %}.
 
                 {% endif %}
             </p>

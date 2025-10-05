@@ -36,10 +36,8 @@ class Post(models.Model):
         null = True,
         blank = True
     )
-    category = models.ForeignKey(
+    categories = models.ManyToManyField(
         'Category',
-        on_delete = models.SET_NULL,
-        null = True,
         blank = True
     )
 
