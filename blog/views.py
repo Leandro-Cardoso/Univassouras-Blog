@@ -2,9 +2,27 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView, CreateView
 from django.views.decorators.http import require_POST
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin 
+from django.core.exceptions import ImproperlyConfigured
 from .models import Post, Category
 from .forms import CommentForm
 
+class RoleRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
+    required_role = None
+    def __init__(self, *args, **kwargs):
+        if self.required_role is None:
+            raise ImproperlyConfigured(
+                "RoleRequiredMixin requires 'required_role' to be defined."
+            )
+        super().__init__(*args, **kwargs)
+    def test_func(self):
+        user = self.request.user
+        if not hasattr(user, 'role') or not user.role:
+            return False
+        return user.role.name.lower() == self.required_role.lower()
+    def handle_no_permission(self):
+        return redirect('index')
+    
 class PostListView(ListView):
     model = Post
     template_name = "blog/index.html"
@@ -16,15 +34,20 @@ class PostListView(ListView):
 
 class PostCreateView(CreateView):
     model = Post
+    required_role = "admin"
     fields = [
         "title",
         "category",
         "content"
     ]
     success_url = reverse_lazy("index")
+    def form_valid(self, form):
+        form.instance.author = self.request.user 
+        return super().form_valid(form)
 
 class CategoryCreateView(CreateView):
     model = Category
+    required_role = "admin"
     fields = [
         "name"
     ]

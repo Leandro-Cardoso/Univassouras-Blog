@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'blog.middleware.PublicAccessMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -83,6 +84,11 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
+LOGIN_REDIRECT_URL = "/" 
+
+LOGIN_URL = "/login/"
+
+AUTH_USER_MODEL = 'blog.User'
 
 AUTH_PASSWORD_VALIDATORS = [
     {

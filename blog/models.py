@@ -1,6 +1,5 @@
 from django.db import models
-
-# Create your models here.
+from django.contrib.auth.models import AbstractUser # <--- IMPORTANTE
 
 class Role(models.Model):
     name = models.CharField(max_length = 100, unique = True, null = False)
@@ -9,19 +8,12 @@ class Role(models.Model):
     def __str__(self):
         return self.name
 
-class User(models.Model):
-    DEFAULT_ROLE_ID = 1
-
-    username = models.CharField(max_length = 100, unique = True, null = False)
-    password = models.CharField(max_length = 100, null = False)
-    created_at = models.DateTimeField(auto_now_add = True)
-
+class User(AbstractUser): 
     role = models.ForeignKey(
         'Role',
         on_delete = models.SET_NULL,
         null = True,
-        blank = True,
-        default = DEFAULT_ROLE_ID
+        blank = True
     )
 
     def __str__(self):

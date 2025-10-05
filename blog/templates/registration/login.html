@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+
+    <link rel="stylesheet" href="{% static 'blog/app.css' %}">
+</head>
+<body>
+    
+    <h1>Login</h1>
+
+    {% if form.errors %}
+        <p style="color: red;">Seu nome de usuário e senha não correspondem. Por favor, tente novamente.</p>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_div }}
+        <nav class="actions">
+            <button type="submit" class="btn">Login</button>
+            <input type="hidden" name="next" value="{{ next }}">
+        </nav>
+    </form>
+
+</body>
+</html>

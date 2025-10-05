@@ -125,12 +125,14 @@ input {
     padding: var(--spacing);
     border: 0;
     border-radius: var(--border-radius);
-    max-width: 200px;
-    min-width: 200px;
+    width: 200px;
     transition: all 0.4s ease-in-out;
 }
 
 a.btn {
+    display: inline-block;
+    text-align: center;
+    width: 200px;
     padding-left: 0;
     padding-right: 0;
 }
@@ -172,8 +174,15 @@ a.btn {
     flex-direction: row;
     justify-content: center;
     gap: var(--spacing);
+    width: 100%;
 }
 
 .hide {
     display: none !important;
+}
+
+#logout-form {
+    height: 0;
+    padding: 0;
+    position: absolute;
 }

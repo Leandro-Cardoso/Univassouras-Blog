@@ -12,6 +12,16 @@
     
     <h1>Blog</h1>
 
+    {% if user.is_authenticated and user.role.name|lower == "admin" %}
+    <form method="post" action="{% url 'logout' %}" style="display: inline;" id="logout-form">
+        {% csrf_token %}
+    </form>
+    <nav class="actions">
+        <button type="submit" class="btn" form="logout-form">Logout</button>
+        <a href="{% url 'create_post' %}" class="btn">Novo Post</a>
+    </nav>
+    {% endif %}
+
     <ul class="posts-container">
 
         {% for post in blog %}
@@ -65,10 +75,6 @@
         <li>Nenhuma postagem registrada</li>
         {% endfor %}
     </ul>
-
-    <nav class="actions">
-        <a href="{% url 'create_post' %}" class="btn">Novo Post</a>
-    </nav>
 
     <script src="{% static 'blog/app.js' %}"></script>
 

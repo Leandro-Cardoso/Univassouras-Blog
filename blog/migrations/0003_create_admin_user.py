@@ -3,18 +3,25 @@
 from django.db import migrations
 from django.conf import settings
 
+ADMIN_ROLE_NAME = 'Admin'
 ADMIN_ROLE_ID = 2 
 
 def create_admin_user(apps, schema_editor):
     app_label, model_name = settings.AUTH_USER_MODEL.split('.')
     User = apps.get_model(app_label, model_name)
-
+    Role = apps.get_model('blog', 'Role') 
+    try:
+        admin_role = Role.objects.get(pk=ADMIN_ROLE_ID)
+    except Role.DoesNotExist:
+        print(f"Role com ID {ADMIN_ROLE_ID} não encontrada. Ignorando atribuição de role.")
+        admin_role = None
     if not User.objects.filter(username = 'admin').exists():
         user = User.objects.create_superuser(
             username = 'admin',
             password = 'admin'
         )
-        user.role = ADMIN_ROLE_ID
+        if admin_role:
+            user.role = admin_role 
         user.save()
 
 def reverse_create_admin_user(apps, schema_editor):
