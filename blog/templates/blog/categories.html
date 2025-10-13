@@ -25,6 +25,14 @@
 
             <h2>{{ category.name }}</h2>
 
+            <form method="post" action="{% url 'category_delete' pk=category.pk %}" id="delete-category-form-{{ category.pk }}">
+                {% csrf_token %}
+            </form>
+
+            <nav class="actions">
+                <button type="submit" class="btn" form="delete-category-form-{{ category.pk }}">Apagar</button>
+            </nav>
+
         </li>
 
         {% empty %}
