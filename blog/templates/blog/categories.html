@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+
+    <link rel="stylesheet" href="{% static 'blog/app.css' %}">
+</head>
+<body>
+
+    <h1>Categorias</h1>
+
+    <nav class="actions">
+        <a href="{% url 'index' %}" class="btn">Voltar</a>
+        <a href="{% url 'create_category' %}" class="btn">Criar Categoria</a>
+    </nav>
+
+    <ul class="posts-container">
+
+        {% for category in blog %}
+
+        <li class="post-card">
+
+            <h2>{{ category.name }}</h2>
+
+        </li>
+
+        {% empty %}
+        <li>Nenhuma categoria registrada</li>
+        {% endfor %}
+    </ul>
+
+    <script src="{% static 'blog/app.js' %}"></script>
+
+</body>
+</html>

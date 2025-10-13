@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import PostListView, PostCreateView, PostUpdateView, PostDeleteView, CategoryCreateView, create_comment
+from .views import PostListView, PostCreateView, PostUpdateView, PostDeleteView, CategoryListView, CategoryCreateView, create_comment
 
 urlpatterns = [
     path("", PostListView.as_view(), name="index"),
@@ -7,5 +7,9 @@ urlpatterns = [
     path("post/<int:pk>/edit", PostUpdateView.as_view(), name="post_update"),
     path("post/<int:pk>/delete", PostDeleteView.as_view(), name="post_delete"),
     path("category", CategoryCreateView.as_view(), name = "create_category"),
-    path('post/<int:post_pk>/comment/new/', create_comment, name='create_comment'), 
+    path('post/<int:post_pk>/comment/new/', create_comment, name='create_comment'),
+    path("categories", CategoryListView.as_view(), name="categories"),
 ]
+
+# TODO: List categories
+# TODO: Delete category

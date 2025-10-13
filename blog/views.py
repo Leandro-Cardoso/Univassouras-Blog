@@ -65,13 +65,18 @@ class PostDeleteView(RoleRequiredMixin, DeleteView):
     def get(self, request, *args, **kwargs):
         return redirect(self.success_url)
 
+class CategoryListView(ListView):
+    model = Category
+    template_name = "blog/categories.html"
+    context_object_name = "blog"
+
 class CategoryCreateView(CreateView):
     model = Category
     required_role = "admin"
     fields = [
         "name"
     ]
-    success_url = reverse_lazy("create_post")
+    success_url = reverse_lazy("categories")
 
 @require_POST
 def create_comment(request, post_pk):
